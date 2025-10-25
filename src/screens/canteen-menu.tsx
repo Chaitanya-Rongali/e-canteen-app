@@ -9,7 +9,7 @@ import { SectionHeader } from '../components/SectionHeader';
 export const CanteenMenu = () => (
 
   <SafeAreaView style={styles.container} edges={['top']}>
-    <Text>EverestEnginering</Text>
+    <Text style={styles.tittle}>EverestCanteen</Text>
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item.id + index}
