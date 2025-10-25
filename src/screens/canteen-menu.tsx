@@ -3,6 +3,8 @@ import { Text, View, SectionList, Image } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { DATA } from '../data/canteen-menu';
 import { styles } from '../styles/canteen-menu';
+import { MenuItem } from '../components/MenuItem';
+import { SectionHeader } from '../components/SectionHeader';
 
 export const CanteenMenu = () => (
 
@@ -11,15 +13,9 @@ export const CanteenMenu = () => (
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item.id + index}
-      renderItem={({ item }) => (
-        <View style={styles.item}>
-          <Image source={item.image} style={styles.image} />
-          <Text style={styles.title}>{item.name}</Text>
-          <Text style={styles.title}>₹{item.cost}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <MenuItem item={item} />}
       renderSectionHeader={({ section: { title } }) => (
-        <Text style={styles.header}>{title}</Text>
+        <SectionHeader title={title} />
       )}
     />
   </SafeAreaView>
