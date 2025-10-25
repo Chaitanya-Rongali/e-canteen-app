@@ -1,13 +1,22 @@
-import { Text } from "react-native"
-import { styles } from "../styles/canteen-menu"
+import { Button, Pressable, Text, View } from "react-native"
+import { headerstyles } from "../styles/sectionheader"
+import { useState } from "react"
 
 type sectionHeader = {
     title: string
 }
+
+
+
 export const SectionHeader: React.FC<sectionHeader> = ({ title }) => {
+     const [modalVisible, setModalVisible] = useState(false);
     return (
-        <>
-            <Text style={styles.header}>{title}</Text>
-        </>
+        <View style={headerstyles.headerContainer}>
+            <Text style={headerstyles.headerTitle}>{title}</Text>
+            <Pressable style={headerstyles.button} onPress={()=>setModalVisible(true)}>
+        <Text style={headerstyles.buttonText}>Add</Text>
+      </Pressable>
+          </View>  
+        
     )
 }
