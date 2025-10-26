@@ -23,7 +23,7 @@ export const CanteenMenu = () => {
   }
   return(
   <SafeAreaView style={styles.container} edges={['top']}>
-    <Text style={styles.tittle}>EverestCanteen</Text>
+    <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
     <SectionList
       sections={menuItems}
       keyExtractor={(item,index) => item.id+index}
