@@ -94,6 +94,7 @@ This is one way to run your app — you can also build it directly from Android 
 
 
 ##  Features:
+-   Display  the canteen menu page with list of canteen menu items.
 
 ##  Tech Stack:
 
