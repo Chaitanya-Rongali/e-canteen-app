@@ -47,6 +47,7 @@ export const modalStyles = StyleSheet.create({
     borderRadius: 8,
     marginLeft: 8,
     alignItems: "center",
+    width:60
   },
   buttonText: {
     color: "#fff",
