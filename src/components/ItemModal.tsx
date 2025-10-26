@@ -54,7 +54,7 @@ export const ItemMOdal:React.FC<ItemModalprops>=({modalVisible,onClose,title, Se
 
     return(
         
-        <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <Modal  testID="modal" animationType="slide" transparent={true} visible={modalVisible}>
           <View style={modalStyles.modal}>
         <View style={modalStyles.modalContainer}>
         <Text style={modalStyles.modalTitle}>{getModalTitle(title)}</Text>
