@@ -8,15 +8,17 @@ type sectionHeader = {
     title: string
     SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
     menuItems: menuSection[]
+    data:any
 }
 
 
 
-export const SectionHeader: React.FC<sectionHeader> = ({ title ,SetMenuItems,menuItems}) => {
+export const SectionHeader: React.FC<sectionHeader> = ({ title ,SetMenuItems,menuItems,data}) => {
      const [modalVisible, setModalVisible] = useState(false);
     return (
         <View style={headerstyles.headerContainer}>
             <Text style={headerstyles.headerTitle}>{title}</Text>
+            <Text>Count:{data.length}</Text> 
             <Pressable style={headerstyles.button} onPress={()=>setModalVisible(true)}>
         <Text style={headerstyles.buttonText}>Add</Text>
       </Pressable>

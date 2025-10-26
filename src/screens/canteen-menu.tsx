@@ -16,8 +16,8 @@ export const CanteenMenu = () => {
       sections={menuItems}
       keyExtractor={(item,index) => item.id+index}
       renderItem={({ item }) => <MenuItem item={item} />}
-      renderSectionHeader={({ section: { title } }) => (
-        <SectionHeader title={title} SetMenuItems={SetMenuItems} menuItems={menuItems}/>
+      renderSectionHeader={({ section }) => (
+        <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data}/>
       )}
     />
   </SafeAreaView>
