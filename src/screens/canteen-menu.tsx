@@ -9,13 +9,25 @@ import { menuSection } from '../types/canteen-menu';
 
 export const CanteenMenu = () => {
     const[menuItems,SetMenuItems]=useState<menuSection[]>(DATA)
+  const handleDelete = (sectionTitle: string, id: string) => {
+    const updatedSections = menuItems.map(section => {
+      if (section.title === sectionTitle) {
+        return {
+          ...section,
+          data: section.data.filter(item => item.id !== id),
+        };
+      }
+      return section;
+    });
+    SetMenuItems(updatedSections);
+  }
   return(
   <SafeAreaView style={styles.container} edges={['top']}>
     <Text style={styles.tittle}>EverestCanteen</Text>
     <SectionList
       sections={menuItems}
       keyExtractor={(item,index) => item.id+index}
-      renderItem={({ item }) => <MenuItem item={item} />}
+      renderItem={({ item,section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title}/>}
       renderSectionHeader={({ section }) => (
         <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data}/>
       )}
