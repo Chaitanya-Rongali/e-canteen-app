@@ -27,4 +27,20 @@ describe("ItemMOdal", () => {
         expect(SetMenuItems).toHaveBeenCalled();
         expect(mockOnClose).toHaveBeenCalled();
     });
+    test("displays alert if fields are empty", () => {
+        const alertSpy = jest.spyOn(Alert, "alert");
+        const { getByText } = render(
+            <ItemMOdal
+                modalVisible={mockmodalVisible}
+                onClose={mockOnClose}
+                title={mockTitle}
+                SetMenuItems={SetMenuItems}
+                menuItems={mockMenuItems}
+            />
+        )
+
+        fireEvent.press(getByText("Add"));
+        expect(alertSpy).toHaveBeenCalledWith("Please Enter all values");
+    });
+
 })
