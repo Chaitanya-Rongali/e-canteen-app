@@ -19,11 +19,11 @@ You’ll need [Node.js](https://nodejs.org/) installed to run the app.
 
 1. Clone this project to your computer:
    ```
-   git clone 
+   git clone https://github.com/Chaitanya-Rongali/e-canteen-app.git
    ```
 2. Open the folder:
    ```
-   cd everest-canteen
+   cd e-canteen-app
    ```
 3. Install dependencies:
    ```
