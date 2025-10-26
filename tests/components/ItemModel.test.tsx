@@ -42,5 +42,22 @@ describe("ItemMOdal", () => {
         fireEvent.press(getByText("Add"));
         expect(alertSpy).toHaveBeenCalledWith("Please Enter all values");
     });
+    test("displays alert if price is negative", () => {
+    const alertSpy = jest.spyOn(Alert, "alert");
+    const { getByText, getByPlaceholderText } = render(
+        <ItemMOdal
+        modalVisible={mockmodalVisible}
+        onClose={mockOnClose}
+        title={mockTitle}
+        SetMenuItems={SetMenuItems}
+        menuItems={mockMenuItems}
+      />
+      
+    );
+    fireEvent.changeText(getByPlaceholderText("Item Name"), "firedrice");
+    fireEvent.changeText(getByPlaceholderText("Price"), "-60");
+    fireEvent.press(getByText("Add"));
+    expect(alertSpy).toHaveBeenCalledWith("Amount must be postive");
+  });
 
 })
