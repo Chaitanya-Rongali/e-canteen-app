@@ -5,8 +5,9 @@ import CanteenMenu from "../../src/screens/canteen-menu";
 describe("should dispaly the content on the homescreen", () => {
     test("renders EverestEngineering message on the home page", async () => {
         const { getByText } = render(<CanteenMenu/>);
-        const header = getByText('EverestEnginering');
+        const header = getByText('Everest-Canteen👨‍🍳');
         expect(header).toBeTruthy()
     });
+    
     
 });
