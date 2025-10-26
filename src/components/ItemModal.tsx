@@ -19,7 +19,7 @@ const getModalTitle = (section: string) => {
 export const ItemMOdal:React.FC<ItemModalprops>=({modalVisible,onClose,title, SetMenuItems,menuItems })=>{
     const [itemName, setItemName] = useState("");
     const [price, setPrice] = useState("");
-  const handleAddItem=()=>{
+  const handleAddItem=(title:string)=>{
     console.log('name:',itemName)
     console.log('price:',price)
     const newItem = {
@@ -65,7 +65,7 @@ export const ItemMOdal:React.FC<ItemModalprops>=({modalVisible,onClose,title, Se
           />
           <View style={modalStyles.modalButtons}>
             <Pressable style={modalStyles.AddButton}>
-              <Text style={modalStyles.buttonText} onPress={handleAddItem} >Add</Text>
+              <Text style={modalStyles.buttonText} onPress={()=>{handleAddItem(title)}} >Add</Text>
             </Pressable>
             <Pressable style={modalStyles.cancelButton} onPress={onClose}>
               <Text style={modalStyles.buttonText}>Cancel</Text>
