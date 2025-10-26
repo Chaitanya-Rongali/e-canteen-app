@@ -7,7 +7,7 @@ type MenuItem = {
 export const MenuItem: React.FC<MenuItem> = ({ item }) => {
     return (
         <View style={Itemstyles .item}>
-            <Image source={item.image} style={Itemstyles .image} />
+            <Image source={{uri:item.image}} style={Itemstyles .image} />
             <Text style={Itemstyles .title}>{item.name}</Text>
             <Text style={Itemstyles .title}>₹{item.cost}</Text>
         </View>
