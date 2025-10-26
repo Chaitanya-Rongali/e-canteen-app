@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "../styles/ItemModal";
 import { DATA } from "../data/canteen-menu";
 import { menuSection } from "../types/canteen-menu";
@@ -22,6 +22,14 @@ export const ItemMOdal:React.FC<ItemModalprops>=({modalVisible,onClose,title, Se
   const handleAddItem=(title:string)=>{
     console.log('name:',itemName)
     console.log('price:',price)
+    if(!price || !itemName){
+      Alert.alert('Please Enter all values')
+      return
+    }
+    if(Number(price)<0 || isNaN(Number(price))){
+      Alert.alert("Amount must be postive")
+      return
+    }
     const newItem = {
       id: Math.random().toString(),
       name: itemName,
