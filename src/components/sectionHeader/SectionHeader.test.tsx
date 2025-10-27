@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react-native";
-import { SectionHeader } from "../../src/components/SectionHeader";
+import { SectionHeader } from "./SectionHeader.tsx";
 const mocktittle = 'Breakfast'
 describe("SectionHeader ", () => {
     test('Should Add button on the screen', () => {
@@ -7,9 +7,9 @@ describe("SectionHeader ", () => {
         const addButton = getByText('Add')
         expect(addButton).toBeTruthy();
     })
-    test('should section tittle on the screen', () => {
-        const { getByTestId } = render(<SectionHeader title={mocktittle} />)
-        const tittle = getByTestId('title')
+    test('should Breakfast on the screen', () => {
+        const { getByText } = render(<SectionHeader title={mocktittle} />)
+        const tittle = getByText('Breakfast')
         expect(tittle).toBeOnTheScreen();
     })
 })
