@@ -1,22 +1,17 @@
 import { Button, Pressable, Text, View } from "react-native"
-import { headerstyles } from "../styles/sectionheader"
+import { headerstyles } from "../styles/SectionHeader"
 import { useState } from "react"
-
-type sectionHeader = {
-    title: string
-}
-
-
+import { sectionHeader } from "../types/CanteenMenu"
 
 export const SectionHeader: React.FC<sectionHeader> = ({ title }) => {
-     const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <View style={headerstyles.headerContainer}>
-            <Text style={headerstyles.headerTitle}>{title}</Text>
-            <Pressable style={headerstyles.button} onPress={()=>setModalVisible(true)}>
-        <Text style={headerstyles.buttonText}>Add</Text>
-      </Pressable>
-          </View>  
-        
+            <Text testID='title' style={headerstyles.headerTitle}>{title}</Text>
+            <Pressable style={headerstyles.button} onPress={() => setModalVisible(true)}>
+                <Text style={headerstyles.buttonText} id="Add">Add</Text>
+            </Pressable>
+        </View>
+
     )
 }
