@@ -1,4 +1,3 @@
-
 import { StyleSheet } from 'react-native';
 export const headerstyles = StyleSheet.create({
     headerContainer: {
@@ -20,7 +19,7 @@ export const headerstyles = StyleSheet.create({
         borderRadius: 6,
         paddingVertical: 6,
         paddingHorizontal: 12,
-       
+
     },
 
     buttonText: {
