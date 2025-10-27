@@ -1,8 +1,7 @@
 import { Button, Pressable, Text, View } from "react-native"
-import { headerstyles } from "../styles/SectionHeader"
+import { headerstyles } from "./SectionHeader"
 import { useState } from "react"
-import { sectionHeader } from "../types/CanteenMenu"
-
+import { sectionHeader } from "../../types/CanteenMenu"
 export const SectionHeader: React.FC<sectionHeader> = ({ title }) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
