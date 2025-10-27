@@ -2,12 +2,8 @@ import { Image, Pressable, Text, View } from "react-native"
 import { menuItem } from "../types/canteen-menu"
 import { Itemstyles } from "../styles/menuItem"
 import { modalStyles } from "../styles/ItemModal"
-type MenuItem = {
-    item: menuItem
-    handleDelete: (sectionTitle: string, id: string) => void
-    sectionTitle: string;
-}
-export const MenuItem: React.FC<MenuItem> = ({ item,handleDelete, sectionTitle}) => {
+import { MenuItemprops } from "../types/canteen-menu"
+export const MenuItem: React.FC<MenuItemprops> = ({ item,handleDelete, sectionTitle}) => {
 
     return (
         <View style={Itemstyles.item}>

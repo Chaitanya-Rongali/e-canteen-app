@@ -2,16 +2,7 @@ import { Button, Pressable, Text, View } from "react-native"
 import { headerstyles } from "../styles/sectionheader"
 import { useState } from "react"
 import { ItemMOdal } from "./ItemModal"
-import { menuSection } from "../types/canteen-menu"
-
-type sectionHeader = {
-    title: string
-    SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
-    menuItems: menuSection[]
-    data:any
-}
-
-
+import { sectionHeader } from "../types/canteen-menu"
 
 export const SectionHeader: React.FC<sectionHeader> = ({ title ,SetMenuItems,menuItems,data}) => {
      const [modalVisible, setModalVisible] = useState(false);

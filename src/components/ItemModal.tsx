@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "../styles/ItemModal";
-import { DATA } from "../data/canteen-menu";
-import { menuSection } from "../types/canteen-menu";
+import { ItemModalprops } from "../types/canteen-menu";
 
-type ItemModalprops={
-    modalVisible: boolean,
-    onClose: () => void;
-    title: string
-   SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
-   menuItems: menuSection[]
-}
+
 const getModalTitle = (section: string) => {
     return `Add Item to ${section}`;
 };
