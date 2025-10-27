@@ -59,5 +59,22 @@ describe("ItemMOdal", () => {
     fireEvent.press(getByText("Add"));
     expect(alertSpy).toHaveBeenCalledWith("Amount must be postive");
   });
+  test("modal close when click the cancel", () => {
+
+    const { getByText, getByPlaceholderText } = render(
+        <ItemMOdal
+        modalVisible={mockmodalVisible}
+        onClose={mockOnClose}
+        title={mockTitle}
+        SetMenuItems={SetMenuItems}
+        menuItems={mockMenuItems}
+      />
+    );
+    fireEvent.press(getByText("Cancel"));
+     expect(mockOnClose).toHaveBeenCalled();
+    
+   
+  });
+
 
 })
