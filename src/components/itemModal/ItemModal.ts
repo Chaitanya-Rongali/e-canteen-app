@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 export const modalStyles = StyleSheet.create({
   modal: {
     flex: 1,
@@ -11,7 +10,7 @@ export const modalStyles = StyleSheet.create({
     width: "80%",
     backgroundColor: "#fff",
     borderRadius: 12,
-    padding: 20, 
+    padding: 20,
   },
   modalTitle: {
     fontSize: 20,
@@ -47,7 +46,7 @@ export const modalStyles = StyleSheet.create({
     borderRadius: 8,
     marginLeft: 8,
     alignItems: "center",
-    width:60
+    width: 60
   },
   buttonText: {
     color: "#fff",
