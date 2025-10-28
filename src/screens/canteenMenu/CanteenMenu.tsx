@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, SectionList, Image } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { DATA } from '../../data/CanteenMenu';
 import { styles } from './CanteenMenu';
+import { menuSection } from '../../types/CanteenMenu.ts';
 import { MenuItem } from '../../components/menuItem/MenuItem.tsx';
 import { SectionHeader } from '../../components/sectionHeader/SectionHeader.tsx';
-const CanteenMenu = () => (
+
+
+export const CanteenMenu = () => {
+    const[menuItems,SetMenuItems]=useState<menuSection[]>(DATA)
+  const handleDelete = (sectionTitle: string, id: string) => {
+    const updatedSections = menuItems.map(section => {
+      if (section.title === sectionTitle) {
+        return {
+          ...section,
+          data: section.data.filter(item => item.id !== id),
+        };
+      }
+      return section;
+    });
+    SetMenuItems(updatedSections);
+  }
+  return(
   <SafeAreaView style={styles.container} edges={['top']}>
-    <Text style={styles.tittle}>EverestCanteen</Text>
+    <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
     <SectionList
-      sections={DATA}
-      keyExtractor={(item, index) => item.id + index}
-      renderItem={({ item }) => <MenuItem item={item} />}
-      renderSectionHeader={({ section: { title } }) => (
-        <SectionHeader title={title} />
+      sections={menuItems}
+      keyExtractor={(item,index) => item.id+index}
+      renderItem={({ item,section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title}/>}
+      renderSectionHeader={({ section }) => (
+        <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data}/>
       )}
     />
   </SafeAreaView>
 
 );
-export default CanteenMenu;
+}
+

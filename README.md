@@ -24,7 +24,8 @@ You’ll need [Node.js](https://nodejs.org/) installed to run the app.
 2. Open the folder:
    ```
    cd e-canteen-app
-   ```
+    ```
+
 3. Install dependencies:
    ```
    npm install
@@ -95,6 +96,12 @@ This is one way to run your app — you can also build it directly from Android 
 
 ##  Features:
 -   Display  the canteen menu page with list of canteen menu items.
+
+- Added an Add button on each section header that opens a modal to add new items.
+- Modal contains  Item Name, Price, and two buttons that are Submit button  and Cancel button.
+- Added a button for each item to remove it from the section .
+- Display the number of items in  each section header .
+
 
 ##  Tech Stack:
 
