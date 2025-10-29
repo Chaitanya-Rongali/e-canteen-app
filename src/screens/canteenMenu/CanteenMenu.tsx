@@ -8,8 +8,8 @@ import { MenuItem } from '../../components/menuItem/MenuItem.tsx';
 import { SectionHeader } from '../../components/sectionHeader/SectionHeader.tsx';
 
 
-export const CanteenMenu = () => {
-    const[menuItems,SetMenuItems]=useState<menuSection[]>(DATA)
+export const CanteenMenuScreen = () => {
+  const [menuItems, SetMenuItems] = useState<menuSection[]>(DATA)
   const handleDelete = (sectionTitle: string, id: string) => {
     const updatedSections = menuItems.map(section => {
       if (section.title === sectionTitle) {
@@ -22,19 +22,19 @@ export const CanteenMenu = () => {
     });
     SetMenuItems(updatedSections);
   }
-  return(
-  <SafeAreaView style={styles.container} edges={['top']}>
-    <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
-    <SectionList
-      sections={menuItems}
-      keyExtractor={(item,index) => item.id+index}
-      renderItem={({ item,section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title}/>}
-      renderSectionHeader={({ section }) => (
-        <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data}/>
-      )}
-    />
-  </SafeAreaView>
+  return (
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
+      <SectionList
+        sections={menuItems}
+        keyExtractor={(item, index) => item.id + index}
+        renderItem={({ item, section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title} />}
+        renderSectionHeader={({ section }) => (
+          <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data} />
+        )}
+      />
+    </SafeAreaView>
 
-);
+  );
 }
 
