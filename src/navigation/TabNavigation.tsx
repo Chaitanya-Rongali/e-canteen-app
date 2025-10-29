@@ -1,16 +1,16 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { CanteenMenu } from "../screens/canteenMenu/CanteenMenu.tsx";
-import { Orders } from "../components/orders/orders";
+import { CanteenMenuScreen } from "../screens/canteenMenu/CanteenMenu.tsx";
+import { OrdersScreen } from "../screens/orders/OrdersScreen.tsx";
 
 const Tab = createBottomTabNavigator();
 export default function HomeNavigation() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="CanteenMenu" component={CanteenMenu} />
-        <Tab.Screen name="Orders" component={Orders} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Tab.Navigator>
+                <Tab.Screen name="CanteenMenu" component={CanteenMenuScreen} />
+                <Tab.Screen name="Orders" component={OrdersScreen} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
 }
