@@ -26,3 +26,8 @@ export type sectionHeader = {
     menuItems: menuSection[]
     data: any
 }
+export type RootStackParamList = {
+  WelcomeScreen: undefined;
+  LoginScreen: { role: "user" | "admin" };
+  RegistrationScreen: { role: "user" | "admin" };
+};
