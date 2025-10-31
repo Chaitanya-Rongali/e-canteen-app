@@ -3,11 +3,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {WelcomeScreen} from "../screens/welcomeScreen/WelcomeScreen.tsx"
 import { RegistrationScreen } from "../screens/RegistarationScreen/RegistrationScreen.tsx";
 import {LoginScreen} from "../screens/LoginScreen/LoginScreen.tsx"
-
 import React from "react";
-
-
-const Stack = createNativeStackNavigator();
+import { RootStackParamList } from "../types/CanteenMenu.ts";
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const StackNavigation = () => {
   return (
