@@ -1,16 +1,17 @@
-import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { ParamListBase, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Button, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { loginScreenStyles } from "../LoginScreen/LoginScreen";
-
+import { RootStackParamList } from "../../types/CanteenMenu";
 export const RegistrationScreen = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, "RegistrationScreen">>();
+  const route = useRoute<RouteProp<RootStackParamList, "RegistrationScreen">>();
+  const role = route.params.role
   return (
     <>
       <View style={loginScreenStyles.container}>
-        <Text style={loginScreenStyles.title}> Create your account</Text>
+        <Text style={loginScreenStyles.title}>{role === "admin" ? "Create account for admin" : "Create account for user "} </Text>
         <Text style={loginScreenStyles.labelText}>User name:</Text>
         <View style={loginScreenStyles.inputView}>
           <TextInput placeholder="Please enter Username" />
@@ -28,7 +29,7 @@ export const RegistrationScreen = () => {
         </TouchableOpacity>
         <Text> or sign in with</Text>
         <Text>Don't have an account?</Text>
-        <Button title="Sign In" onPress={() => navigation.navigate('RegistrationScreen')} />
+        <Button title="Sign In" onPress={() => navigation.navigate('LoginScreen', { role })} />
       </View>
     </>
   )
