@@ -48,4 +48,14 @@ describe("RegistrationScreen", () => {
             fireEvent.press(getByText("SIGN UP"));
             expect(alertSpy).toHaveBeenCalledWith("Paswords do not match");
   })
+  test("display alert when user not filled form but click the sigin up button",()=>{
+          const alertSpy = jest.spyOn(Alert, "alert");
+            const { getByText, getByPlaceholderText } = render(<RegistrationScreen route={mockRoute} />);
+            fireEvent.changeText(getByPlaceholderText("Please enter Username"), "");
+
+            fireEvent.changeText(getByPlaceholderText("*********"), "");
+            fireEvent.changeText(getByPlaceholderText("***********"), "Chaitanya");
+            fireEvent.press(getByText("SIGN UP"));
+            expect(alertSpy).toHaveBeenCalledWith("Please enter all details");
+  })
 });
