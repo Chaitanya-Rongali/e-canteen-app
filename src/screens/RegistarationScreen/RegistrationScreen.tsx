@@ -34,7 +34,7 @@ export const RegistrationScreen = ({route}:any) => {
         </View>
         <Text style={loginScreenStyles.labelText}>ConfirmPassword:</Text>
         <View style={loginScreenStyles.inputView}>
-          <TextInput secureTextEntry placeholder="*********" value={confirmpassword}  onChangeText={(text) => setConfirmpassword(text)}/>
+          <TextInput secureTextEntry placeholder="***********" value={confirmpassword}  onChangeText={(text) => setConfirmpassword(text)}/>
         </View>
         <TouchableOpacity style={loginScreenStyles.loginBtn} onPress={()=>{handleSignup()}}>
           <Text>SIGN UP </Text>
