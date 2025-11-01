@@ -27,6 +27,7 @@ export type sectionHeader = {
     data: any
 }
 export type RootStackParamList = {
+  navigate(arg0: string, arg1: { role: any; }): void;
   WelcomeScreen: undefined;
   LoginScreen: { role: "user" | "admin" };
   RegistrationScreen: { role: "user" | "admin" };
