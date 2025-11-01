@@ -4,10 +4,9 @@ import { useState } from "react";
 import { Alert, Button, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { loginScreenStyles } from "../LoginScreen/LoginScreen";
 import { RootStackParamList } from "../../types/CanteenMenu";
-export const RegistrationScreen = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, "RegistrationScreen">>();
-  const route = useRoute<RouteProp<RootStackParamList, "RegistrationScreen">>();
-  const role = route.params.role
+export const RegistrationScreen = ({route}:any) => {
+  const navigation = useNavigation<RootStackParamList>();
+  const {role} = route.params
    const [username, setUsername] = useState("");
 	 const [password, setPassword] = useState("");
    const[confirmpassword,setConfirmpassword]=useState('')
