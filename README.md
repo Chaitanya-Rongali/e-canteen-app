@@ -101,6 +101,11 @@ This is one way to run your app — you can also build it directly from Android 
 - Modal contains  Item Name, Price, and two buttons that are Submit button  and Cancel button.
 - Added a button for each item to remove it from the section .
 - Display the number of items in  each section header .
+- Display  Welcome Screen that determines the userʼs role User or Admin.
+- Based on the selected role, navigate the user to the corresponding Login Screen.
+- If the user or admin is new, use  Register Screen to register before logging in.
+
+
 
 
 ##  Tech Stack:
