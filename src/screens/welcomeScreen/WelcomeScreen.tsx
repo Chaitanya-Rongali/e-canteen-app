@@ -6,8 +6,11 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export const WelcomeScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const handleLoginScreen = (role: 'user' | 'admin') => {
-        navigation.navigate('LoginScreen', { role })
-    }
+     navigation.navigate('LoginScreen', {
+            role: role
+          });
+        }
+
     return (
         <View style={welcomeScreenStyles.container}>
             <Text>A CANTEEN JUST FOR YOU</Text>
