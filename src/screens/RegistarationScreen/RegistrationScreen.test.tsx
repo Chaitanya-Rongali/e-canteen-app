@@ -38,4 +38,14 @@ describe("RegistrationScreen", () => {
     fireEvent.press(getByText("Sign In"));
     expect(mockNavigate).toHaveBeenCalledWith("LoginScreen", { role: "admin" });
   });
+  test("display alert when user mismatch the password and confirm password",()=>{
+          const alertSpy = jest.spyOn(Alert, "alert");
+            const { getByText, getByPlaceholderText } = render(<RegistrationScreen route={mockRoute} />);
+            fireEvent.changeText(getByPlaceholderText("Please enter Username"), "Chaithu");
+
+            fireEvent.changeText(getByPlaceholderText("*********"), "Chaithu");
+            fireEvent.changeText(getByPlaceholderText("***********"), "Chaitanya");
+            fireEvent.press(getByText("SIGN UP"));
+            expect(alertSpy).toHaveBeenCalledWith("Paswords do not match");
+  })
 });
