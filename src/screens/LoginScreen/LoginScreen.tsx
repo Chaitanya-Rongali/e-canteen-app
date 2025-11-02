@@ -49,7 +49,6 @@ export const LoginScreen = ({ route }: any) => {
             <Text> or sign in with</Text>
             <Text>Don't have an account?</Text>
             <Button title="Sign Up" onPress={() => navigation.navigate('RegistrationScreen', { role })} />
-
         </View>
     )
 }
