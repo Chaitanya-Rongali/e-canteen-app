@@ -4,13 +4,12 @@ import { CanteenMenuScreen } from "../screens/canteenMenu/CanteenMenu.tsx";
 import { OrdersScreen } from "../screens/orders/OrdersScreen.tsx";
 
 const Tab = createBottomTabNavigator();
-export default function HomeNavigation() {
+export default function AdminTabNavigation() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name="CanteenMenu" component={CanteenMenuScreen} />
-                <Tab.Screen name="Orders" component={OrdersScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Screen name="CanteenMenu" component={CanteenMenuScreen} />
+            <Tab.Screen name="Orders" component={OrdersScreen} />
+        </Tab.Navigator>
+
     );
 }
