@@ -28,9 +28,6 @@ export const LoginScreen = ({ route }: any) => {
         }
 
     }
-
-
-
     return (
         <View style={loginScreenStyles.container}>
 
@@ -50,5 +47,7 @@ export const LoginScreen = ({ route }: any) => {
             <Text>Don't have an account?</Text>
             <Button title="Sign Up" onPress={() => navigation.navigate('RegistrationScreen', { role })} />
         </View>
-    )
-}
+    );
+};
+
+
