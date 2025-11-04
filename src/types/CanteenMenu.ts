@@ -32,7 +32,7 @@ type NavigationParams = {
   role: string; 
 };
 export type RootStackParamList = {
-  navigate(arg0: string, arg1:NavigationParams): void;
+  navigate(role: string, navigate:NavigationParams): void;
   WelcomeScreen: undefined;
   LoginScreen: { role: "user" | "admin" };
   RegistrationScreen: { role: "user" | "admin" };
