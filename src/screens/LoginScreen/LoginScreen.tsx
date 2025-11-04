@@ -1,10 +1,10 @@
 import { Button, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { loginScreenStyles } from "./LoginScreen"
 import React from "react"
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types/CanteenMenu";
-
-export const LoginScreen = ({ route }: any) => {
+type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;
+export const LoginScreen = ({ route }: { route: LoginScreenRouteProp } ) => {
     const navigation = useNavigation<RootStackParamList>();
     const { role } = route.params
     return (

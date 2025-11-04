@@ -2,8 +2,15 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { LoginScreen } from './LoginScreen.tsx';
 import { useNavigation } from '@react-navigation/native';
+import { LoginScreenRouteProp } from '../../types/CanteenMenu.ts';
 const mockNavigate = jest.fn();
-const mockRoute = { params: { role: 'admin' } };
+
+const mockRoute: LoginScreenRouteProp = {
+      key: '',
+      name: 'LoginScreen',
+      params: { role: 'admin' }, 
+    };
+
 jest.mock('@react-navigation/native', () => ({
   useNavigation: jest.fn(),
 }));
@@ -19,7 +26,9 @@ describe('LoginScreen', () => {
     expect(getByText('Admin Login')).toBeTruthy();
   });
   test('renders the correct title for user role', () => {
-    const route = { params: { role: 'user' } };
+    const route:LoginScreenRouteProp  = { key: '',
+      name: 'LoginScreen',
+      params: { role: 'user' } };
     const { getByText } = render(<LoginScreen route={route} />);
     expect(getByText('User Login')).toBeTruthy();
   });
