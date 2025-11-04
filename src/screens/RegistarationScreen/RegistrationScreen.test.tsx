@@ -3,9 +3,14 @@ import { render, fireEvent } from "@testing-library/react-native";
 import { RegistrationScreen } from "./RegistrationScreen";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
+import { RegistarationScreenRouteProp } from "../../types/CanteenMenu";
 
 const mockNavigate = jest.fn();
-const mockRoute = { params: { role: "admin" } };
+const mockRoute: RegistarationScreenRouteProp= {
+      key: '',
+      name: 'RegistrationScreen',
+      params: { role: 'admin' }, 
+    };
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
@@ -23,7 +28,9 @@ describe("RegistrationScreen", () => {
     expect(getByText("Create account for admin")).toBeTruthy();
   });
  test("renders the correct title for user role", () => {
-    const route = { params: { role: "user" } };
+   const route:RegistarationScreenRouteProp = { key: '',
+         name: 'RegistrationScreen',
+         params: { role: 'user' } };
     const { getByText } = render(<RegistrationScreen route={route} />);
     expect(getByText("Create account for user")).toBeTruthy();
   });

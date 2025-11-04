@@ -3,8 +3,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Alert, Button, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { loginScreenStyles } from "../LoginScreen/LoginScreen";
-import { RootStackParamList } from "../../types/CanteenMenu";
-export const RegistrationScreen = ({route}:any) => {
+import { LoginScreenRouteProp, RegistarationScreenRouteProp, RootStackParamList } from "../../types/CanteenMenu"
+export const RegistrationScreen = ({ route }: { route:RegistarationScreenRouteProp }) => {
   const navigation = useNavigation<RootStackParamList>();
   const {role} = route.params
    const [username, setUsername] = useState("");
