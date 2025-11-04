@@ -1,3 +1,5 @@
+import { RouteProp } from "@react-navigation/native";
+
 export type menuItem = {
     id: string;
     name: string;
@@ -26,3 +28,14 @@ export type sectionHeader = {
     menuItems: menuSection[]
     data: any
 }
+type NavigationParams = {
+  role: string; 
+};
+export type RootStackParamList = {
+  navigate(role: string, navigate:NavigationParams): void;
+  WelcomeScreen: undefined;
+  LoginScreen: { role: "user" | "admin" };
+  RegistrationScreen: { role: "user" | "admin" };
+};
+export type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;
+export type RegistarationScreenRouteProp=RouteProp<RootStackParamList, 'RegistrationScreen'>;

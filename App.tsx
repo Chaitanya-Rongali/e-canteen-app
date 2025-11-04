@@ -1,9 +1,9 @@
 import { SafeAreaProvider, } from 'react-native-safe-area-context';
-import HomeNavigation from './src/navigation/TabNavigation.tsx';
+import { AppNavigation } from './src/navigation/AppNavigation.tsx';
 export default function App() {
   return (
     <SafeAreaProvider>
-      < HomeNavigation/>
+      <AppNavigation/>
     </SafeAreaProvider>
   );
 }

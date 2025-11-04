@@ -1,0 +1,68 @@
+import React from "react";
+import { render, fireEvent } from "@testing-library/react-native";
+import { RegistrationScreen } from "./RegistrationScreen";
+import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
+import { RegistarationScreenRouteProp } from "../../types/CanteenMenu";
+
+const mockNavigate = jest.fn();
+const mockRoute: RegistarationScreenRouteProp= {
+      key: '',
+      name: 'RegistrationScreen',
+      params: { role: 'admin' }, 
+    };
+
+jest.mock("@react-navigation/native", () => ({
+  useNavigation: jest.fn(),
+}));
+
+describe("RegistrationScreen", () => {
+  (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(Alert, "alert").mockImplementation(() => {});
+  });
+ test("renders the correct title for admin role", () => {
+    const { getByText } = render(<RegistrationScreen route={mockRoute} />);
+    expect(getByText("Create account for admin")).toBeTruthy();
+  });
+ test("renders the correct title for user role", () => {
+   const route:RegistarationScreenRouteProp = { key: '',
+         name: 'RegistrationScreen',
+         params: { role: 'user' } };
+    const { getByText } = render(<RegistrationScreen route={route} />);
+    expect(getByText("Create account for user")).toBeTruthy();
+  });
+ test("displays username and password input fields", () => {
+    const { getByPlaceholderText } = render(<RegistrationScreen route={mockRoute} />);
+    expect(getByPlaceholderText("Please enter Username")).toBeTruthy();
+    
+  });
+
+  test("navigates to LoginScreen when Sign In button is pressed", () => {
+    const { getByText } = render(<RegistrationScreen route={mockRoute} />);
+    fireEvent.press(getByText("Sign In"));
+    expect(mockNavigate).toHaveBeenCalledWith("LoginScreen", { role: "admin" });
+  });
+  test("display alert when user mismatch the password and confirm password",()=>{
+          const alertSpy = jest.spyOn(Alert, "alert");
+            const { getByText, getByPlaceholderText } = render(<RegistrationScreen route={mockRoute} />);
+            fireEvent.changeText(getByPlaceholderText("Please enter Username"), "Chaithu");
+
+            fireEvent.changeText(getByPlaceholderText("*********"), "Chaithu");
+            fireEvent.changeText(getByPlaceholderText("***********"), "Chaitanya");
+            fireEvent.press(getByText("SIGN UP"));
+            expect(alertSpy).toHaveBeenCalledWith("Paswords do not match");
+  })
+  test("display alert when user not filled form but click the sigin up button",()=>{
+          const alertSpy = jest.spyOn(Alert, "alert");
+            const { getByText, getByPlaceholderText } = render(<RegistrationScreen route={mockRoute} />);
+            fireEvent.changeText(getByPlaceholderText("Please enter Username"), "");
+
+            fireEvent.changeText(getByPlaceholderText("*********"), "");
+            fireEvent.changeText(getByPlaceholderText("***********"), "Chaitanya");
+            fireEvent.press(getByText("SIGN UP"));
+            expect(alertSpy).toHaveBeenCalledWith("Please enter all details");
+  })
+});
