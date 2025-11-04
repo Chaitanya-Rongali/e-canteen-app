@@ -7,7 +7,7 @@ import React from "react";
 import { RootStackParamList } from "../types/CanteenMenu.ts";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const StackNavigation = () => {
+export const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="WelcomeScreen"  >
