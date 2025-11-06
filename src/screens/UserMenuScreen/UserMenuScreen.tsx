@@ -8,7 +8,6 @@ import { DATA } from "../../data/CanteenMenu.ts"
 import { SectionHeader } from "../../components/sectionHeader/SectionHeader.tsx"
 import { UserMenuStyles } from "./UserMenuScreenStyles.ts"
 
-
 export const UserMenuScreen = () => {
     const [menuItems] = useState<menuSection[]>(DATA)
     return (
