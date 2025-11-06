@@ -8,8 +8,8 @@ export const SectionHeader: React.FC<sectionHeader> = ({ title, SetMenuItems, me
     return (
         <View style={headerstyles.headerContainer}>
             <Text style={headerstyles.headerTitle}>{title}</Text>
-           {role==="Admin" ?<Text>Count:{data.length}</Text>:<></>}
-            {role==="Admin" ?<Pressable style={headerstyles.button} onPress={() => setModalVisible(true)}>
+           {role==="admin" ?<Text>Count:{data.length}</Text>:<></>}
+            {role==="admin" ?<Pressable style={headerstyles.button} onPress={() => setModalVisible(true)}>
                 <Text style={headerstyles.buttonText}>Add</Text>
             </Pressable>:<></>}
             <ItemModal modalVisible={modalVisible} onClose={() => setModalVisible(false)} title={title} SetMenuItems={SetMenuItems} menuItems={menuItems} />

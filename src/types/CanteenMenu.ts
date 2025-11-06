@@ -38,6 +38,8 @@ export type RootStackParamList = {
   WelcomeScreen: undefined;
   LoginScreen: { role: "user" | "admin" };
   RegistrationScreen: { role: "user" | "admin" };
+  AdminTabNavigation(): React.JSX.Element;
+  UserTabNavigation: () => React.JSX.Element
 
 };
 export type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;

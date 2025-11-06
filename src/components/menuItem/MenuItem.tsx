@@ -8,7 +8,7 @@ export const MenuItem: React.FC<MenuItemprops> = ({ item, handleDelete, sectionT
             <Image source={{ uri: item.image }} style={Itemstyles.image} />
             <Text style={Itemstyles.title}>{item.name}</Text>
             <Text style={Itemstyles.title}>₹{item.cost}</Text>
-            {role==="Admin" ?<Pressable style={modalStyles.cancelButton} onPress={() => handleDelete(sectionTitle, item.id)}>
+            {role==="admin" ?<Pressable style={modalStyles.cancelButton} onPress={() => handleDelete(sectionTitle, item.id)}>
                 <Text>Delete</Text>
             </Pressable>:<Pressable style={modalStyles.cancelButton} onPress={() => handleDelete(sectionTitle, item.id)}>
                 <Text>Add</Text>
