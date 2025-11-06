@@ -21,12 +21,14 @@ export type MenuItemprops = {
     item: menuItem
     handleDelete: (sectionTitle: string, id: string) => void
     sectionTitle: string;
+    role: string;
 }
 export type sectionHeader = {
     title: string
     SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
     menuItems: menuSection[]
     data: any
+    role: string
 }
 type NavigationParams = {
   role: string; 
@@ -36,6 +38,11 @@ export type RootStackParamList = {
   WelcomeScreen: undefined;
   LoginScreen: { role: "user" | "admin" };
   RegistrationScreen: { role: "user" | "admin" };
+
 };
 export type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;
 export type RegistarationScreenRouteProp=RouteProp<RootStackParamList, 'RegistrationScreen'>;
+
+
+
+
