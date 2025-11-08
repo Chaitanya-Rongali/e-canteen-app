@@ -44,6 +44,19 @@ export type RootStackParamList = {
 };
 export type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;
 export type RegistarationScreenRouteProp=RouteProp<RootStackParamList, 'RegistrationScreen'>;
+export type CustomButtonProps={
+     onPress: () => void;
+     title: string;
+     style: any;
+    }
+export type CustomInputProps={
+    placeholder:string;
+    onChangeText: (text: any) => void;
+    secureTextEntry?:boolean;
+    value:string;
+    style: any;
+}
+
 
 
 
