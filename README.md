@@ -104,6 +104,10 @@ This is one way to run your app — you can also build it directly from Android 
 - Display  Welcome Screen that determines the userʼs role User or Admin.
 - Based on the selected role, navigate the user to the corresponding Login Screen.
 - If the user or admin is new, use  Register Screen to register before logging in.
+- Implement role-based redirection after user login.
+- Added conditional checks to verify user roles .
+- Updated login flow to redirection logic.
+- Upon successful login, redirect the user to the appropriate Menu Screen based on their role.
 
 
 

@@ -28,9 +28,9 @@ export const CanteenMenuScreen = () => {
       <SectionList
         sections={menuItems}
         keyExtractor={(item, index) => item.id + index}
-        renderItem={({ item, section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title} />}
+        renderItem={({ item, section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title} role={'admin'} />}
         renderSectionHeader={({ section }) => (
-          <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data} />
+          <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data} role={'admin'} />
         )}
       />
     </SafeAreaView>

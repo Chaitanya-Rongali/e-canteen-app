@@ -21,12 +21,14 @@ export type MenuItemprops = {
     item: menuItem
     handleDelete: (sectionTitle: string, id: string) => void
     sectionTitle: string;
+    role: string;
 }
 export type sectionHeader = {
     title: string
-    SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
+    SetMenuItems?: (items:menuSection[] ) => void;
     menuItems: menuSection[]
     data: any
+    role: string
 }
 type NavigationParams = {
   role: string; 
@@ -36,6 +38,26 @@ export type RootStackParamList = {
   WelcomeScreen: undefined;
   LoginScreen: { role: "user" | "admin" };
   RegistrationScreen: { role: "user" | "admin" };
+  AdminTabNavigation(): React.JSX.Element;
+  UserTabNavigation: () => React.JSX.Element
+
 };
 export type LoginScreenRouteProp = RouteProp<RootStackParamList, 'LoginScreen'>;
 export type RegistarationScreenRouteProp=RouteProp<RootStackParamList, 'RegistrationScreen'>;
+export type CustomButtonProps={
+     onPress: () => void;
+     title: string;
+     style: any;
+    }
+export type CustomInputProps={
+    placeholder:string;
+    onChangeText: (text: any) => void;
+    secureTextEntry?:boolean;
+    value:string;
+    style: any;
+}
+
+
+
+
+

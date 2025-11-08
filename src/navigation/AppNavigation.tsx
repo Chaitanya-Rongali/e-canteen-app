@@ -5,6 +5,9 @@ import { RegistrationScreen } from "../screens/RegistarationScreen/RegistrationS
 import {LoginScreen} from "../screens/LoginScreen/LoginScreen.tsx"
 import React from "react";
 import { RootStackParamList } from "../types/CanteenMenu.ts";
+import AdminTabNavigation from "./AdminTabNavigation.tsx";
+import { UserTabNavigation } from "./UserTabNavigation.tsx";
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const AppNavigation = () => {
@@ -14,7 +17,9 @@ export const AppNavigation = () => {
         <Stack.Screen name="WelcomeScreen"  component={WelcomeScreen} options={{headerShown:false}} />
         <Stack.Screen name="LoginScreen"  component={LoginScreen}  />
         <Stack.Screen name="RegistrationScreen"  component={RegistrationScreen}  />
+        <Stack.Screen name="AdminTabNavigation"  component={AdminTabNavigation}  />
+        <Stack.Screen name="UserTabNavigation"  component={UserTabNavigation}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}; 
