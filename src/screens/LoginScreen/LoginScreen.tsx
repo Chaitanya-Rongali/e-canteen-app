@@ -9,15 +9,18 @@ export const LoginScreen = ({ route }: any) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState("");
     const { role } = route.params
+    const userName="Ramesh"
+    const Password="1234"
     const handleLogin=(username:string,password:string,role:string)=>{
         if(!username|| !password){
             Alert.alert("Please enter details before login!")
+            return
         }
         if(role==="admin"){
-            if(username==="Ramesh" && password==="1234"){
-             navigation.navigate('AdminTabNavigation', {role })
+            if(username===userName && password===Password){
+             return navigation.navigate('AdminTabNavigation', {role })
             }else{
-                Alert.alert("Password or username is wrong")
+               return Alert.alert("Password or username is wrong")
             }
         }else{
             
