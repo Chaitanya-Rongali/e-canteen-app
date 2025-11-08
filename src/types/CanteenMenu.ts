@@ -25,7 +25,7 @@ export type MenuItemprops = {
 }
 export type sectionHeader = {
     title: string
-    SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
+    SetMenuItems?: (items:menuSection[] ) => void;
     menuItems: menuSection[]
     data: any
     role: string
