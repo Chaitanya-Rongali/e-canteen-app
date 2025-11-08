@@ -10,6 +10,12 @@ import { UserMenuStyles } from "./UserMenuScreenStyles.ts"
 
 export const UserMenuScreen = () => {
     const [menuItems] = useState<menuSection[]>(DATA)
+    const handleDelete=()=>{
+      handleDelete()
+    }
+    const SetMenuItems=()=>{
+        SetMenuItems()
+    }
     return (
         <View>
             <View style={UserMenuStyles.headerContainer}>
@@ -21,9 +27,9 @@ export const UserMenuScreen = () => {
             <SectionList
                 sections={menuItems}
                 keyExtractor={(item, index) => item.id + index}
-                renderItem={({ item, section }) => <MenuItem item={item} handleDelete={() => { }} sectionTitle={section.title} role="user" />}
+                renderItem={({ item, section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title} role="user" />}
                 renderSectionHeader={({ section }) => (
-                    <SectionHeader role="user" title={section.title} data={section.data} SetMenuItems={() => { }} menuItems={menuItems} />
+                    <SectionHeader role="user" title={section.title} data={section.data} SetMenuItems={SetMenuItems} menuItems={menuItems} />
                 )}
             />
 
