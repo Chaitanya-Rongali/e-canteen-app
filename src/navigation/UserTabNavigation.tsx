@@ -6,8 +6,8 @@ const Tab = createBottomTabNavigator();
 export const UserTabNavigation = () => {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="CanteenMenu" component={UserMenuScreen} />
-            <Tab.Screen name="Orders" component={OrdersScreen} />
+            <Tab.Screen name="UserMenuScreen" component={UserMenuScreen} />
+            <Tab.Screen name="OrdersScreen" component={OrdersScreen} />
         </Tab.Navigator>
 
     );
