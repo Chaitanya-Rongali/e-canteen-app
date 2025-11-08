@@ -1,18 +1,7 @@
 import React from "react";
 import {TouchableOpacity, Text, StyleSheet, ActivityIndicator} from "react-native";
-type CustomButtonProps={
-     onPress: () => void;
-     title: string;
-     style: {
-    flex: number;
-    backgroundColor: string;
-    paddingVertical: number;
-    borderRadius: number;
-    marginLeft: number;
-    alignItems: "center";
-    width: number;
-}
-    }
+import { CustomButtonProps } from "../../types/CanteenMenu";
+
 
 export const CustomButton = ({onPress,title,style}:CustomButtonProps) => {
   return (
