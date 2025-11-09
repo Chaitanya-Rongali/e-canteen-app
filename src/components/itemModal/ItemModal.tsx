@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "./ItemModal";
 import { ItemModalprops } from "../../types/CanteenMenu";
+import { addMenuItems } from "../../server";
 
 const getModalTitle = (section: string) => {
   return `Add Item to ${section}`;
@@ -9,7 +10,7 @@ const getModalTitle = (section: string) => {
 export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, title, SetMenuItems, menuItems }) => {
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
-  const handleAddItem = (title: string) => {
+  const handleAddItem = async (title: string) => {
     console.log('name:', itemName)
     console.log('price:', price)
     if (!price || !itemName) {
@@ -20,6 +21,14 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
       Alert.alert("Amount must be postive")
       return
     }
+    const section =menuItems.find((section)=>section.title===title);
+    if(section){
+      const repeatItem=section.data.some(item=>item.name.trim().toLowerCase()===itemName.trim().toLowerCase())
+      if(repeatItem){
+        Alert.alert("Item alerady exists your section")
+        return;
+      }
+    }
     const newItem = {
       id: Math.random().toString(),
       name: itemName,
@@ -27,11 +36,18 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
       image: ''
 
     };
-    const updatedMenu = menuItems.map((section) => {
+    const result= await addMenuItems(itemName, Number(price), title);
+    if(result.newItem){
+       const updatedMenu = menuItems.map((section) => {
       if (section.title === title) {
         return {
           ...section,
-          data: [...section.data, newItem],
+          data: [...section.data,{
+             id: result.newItem.id,
+              name: result.newItem.itemName,
+              cost: result.newItem.price,
+              image: ""
+          }],
         };
       }
       return section;
@@ -40,7 +56,9 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
     setItemName("");
     setPrice("");
     onClose();
-  }
+  }else{
+    Alert.alert("Failed to add Item")
+  }}
 
   return (
 

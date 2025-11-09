@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, SectionList, Image } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { DATA } from '../../data/CanteenMenu';
@@ -6,11 +6,24 @@ import { styles } from './CanteenMenu';
 import { menuSection } from '../../types/CanteenMenu.ts';
 import { MenuItem } from '../../components/menuItem/MenuItem.tsx';
 import { SectionHeader } from '../../components/sectionHeader/SectionHeader.tsx';
+import { deleteMenuItem, fetchMenuItems } from '../../server.ts';
 
 
-export const CanteenMenuScreen = () => {
+export const CanteenMenuScreen:React.FC = () => {
   const [menuItems, SetMenuItems] = useState<menuSection[]>(DATA)
-  const handleDelete = (sectionTitle: string, id: string) => {
+
+  useEffect(() => {
+    const getMenuItems= async()=>{
+    try{
+   const data= await fetchMenuItems()
+   SetMenuItems(data);
+ }catch{
+      console.error('Error fetching menu items');
+}
+  };
+},[]);
+  const handleDelete = async (sectionTitle: string, id: string) => {
+    await deleteMenuItem(id)
     const updatedSections = menuItems.map(section => {
       if (section.title === sectionTitle) {
         return {
@@ -22,6 +35,9 @@ export const CanteenMenuScreen = () => {
     });
     SetMenuItems(updatedSections);
   }
+  
+
+  
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
