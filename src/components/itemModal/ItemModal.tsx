@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "./ItemModal";
-import { ItemModalprops } from "../../types/CanteenMenu";
+import { ItemModalprops, menuSection } from "../../types/CanteenMenu";
 import { addMenuItems } from "../../server";
 
 const getModalTitle = (section: string) => {
@@ -29,14 +29,18 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
         return;
       }
     }
-    const newItem = {
+  const newItem: menuSection = {
+  title: title,
+  data: [
+    {
       id: Math.random().toString(),
       name: itemName,
       cost: Number(price),
-      image: ''
-
-    };
-    const result= await addMenuItems(itemName, Number(price), title);
+      image: '',
+    },
+  ],
+};
+    const result= await addMenuItems(newItem);
     if(result.newItem){
        const updatedMenu = menuItems.map((section) => {
       if (section.title === title) {
