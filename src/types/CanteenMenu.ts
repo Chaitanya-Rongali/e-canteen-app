@@ -5,6 +5,7 @@ export type menuItem = {
     name: string;
     cost: number;
     image: string;
+    sectionName: string;
 }
 export type menuSection = {
     title: string;
