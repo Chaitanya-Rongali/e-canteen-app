@@ -1,15 +1,15 @@
-import { menuSection } from "./types/CanteenMenu";
+import { menuItem, menuSection } from "./types/CanteenMenu";
 
 export const fetchMenuItems=async()=>{
     const response = await fetch("http://localhost:3001/menuItems");
      const data = await response.json();
      return data;
 }
-export const addMenuItems=async(section:menuSection)=>{
+export const addMenuItems=async(neItem:menuItem,sectionName:string)=>{
     const response=await fetch("http://localhost:3001/addMenuItems",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(section)
+        body:JSON.stringify({neItem,sectionName})
     });
     return response.json();
 }
