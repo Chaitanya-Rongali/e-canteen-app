@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "./ItemModal";
-import { ItemModalprops, menuSection } from "../../types/CanteenMenu";
-import { addMenuItems } from "../../server";
+import { ItemModalprops, menuItem, menuSection } from "../../types/CanteenMenu";
+import { addMenuItems, fetchMenuItems } from "../../server";
 
 const getModalTitle = (section: string) => {
   return `Add Item to ${section}`;
@@ -29,40 +29,22 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
         return;
       }
     }
-  const newItem: menuSection = {
-  title: title,
-  data: [
-    {
+    const newItem = {
       id: Math.random().toString(),
       name: itemName,
       cost: Number(price),
       image: '',
-    },
-  ],
-};
-    const result= await addMenuItems(newItem);
-    if(result.newItem){
-       const updatedMenu = menuItems.map((section) => {
-      if (section.title === title) {
-        return {
-          ...section,
-          data: [...section.data,{
-             id: result.newItem.id,
-              name: result.newItem.itemName,
-              cost: result.newItem.price,
-              image: ""
-          }],
-        };
-      }
-      return section;
-    });
-    SetMenuItems(updatedMenu);
-    setItemName("");
-    setPrice("");
-    onClose();
-  }else{
-    Alert.alert("Failed to add Item")
-  }}
+      sectionName: title, 
+    };
+    try{
+    const updatedMenu = await addMenuItems(newItem, title);
+    const newMenu= await fetchMenuItems();
+  
+   SetMenuItems(newMenu);
+    }catch (error) {
+    Alert.alert('Error adding item');
+  }
+  }
 
   return (
 
@@ -84,8 +66,8 @@ export const ItemModal: React.FC<ItemModalprops> = ({ modalVisible, onClose, tit
             onChangeText={setPrice}
           />
           <View style={modalStyles.modalButtons}>
-            <Pressable style={modalStyles.AddButton}>
-              <Text style={modalStyles.buttonText} onPress={() => { handleAddItem(title) }} >Add</Text>
+            <Pressable style={modalStyles.AddButton} onPress={() => { handleAddItem(title) }}>
+              <Text style={modalStyles.buttonText}>Add</Text>
             </Pressable>
             <Pressable style={modalStyles.cancelButton} onPress={onClose}>
               <Text style={modalStyles.buttonText}>Cancel</Text>
