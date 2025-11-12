@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, SectionList, Image, Button, Pressable } from 'react-native';
+import { Text, View, SectionList, Image, Button, Pressable, Alert } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 // import { DATA } from '../../data/CanteenMenu';
 import { styles } from './CanteenMenu';
@@ -14,7 +14,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 
 
 export const CanteenMenuScreen: React.FC = () => {
-  const image="https://www.w3schools.com/howto/img_avatar.png"
+  const image = "https://www.w3schools.com/howto/img_avatar.png"
   const [menuItems, SetMenuItems] = useState<menuSection[]>([])
   const [profileimage, setProfileimage] = useState<any>(image)
 
@@ -57,17 +57,22 @@ export const CanteenMenuScreen: React.FC = () => {
     });
     SetMenuItems(updatedSections);
   }
- 
+  const handleProfilePress = async () => {
+    const permission = await handleCameraPermission();
+    if (permission === 'granted' || permission === 'limited') {
+      launchImageLibrary({ mediaType: 'photo' }, (response) => {
+        setProfileimage(response.assets?.at(0)?.uri);
+      });
+    } else {
+      Alert.alert('Permission denied', 'Cannot change profile picture.');
+    }
+  };
+
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <Pressable style={styles.profileContainer}
-        onPress={() => {
-          handleCameraPermission();launchImageLibrary({ mediaType: "photo" }, (response) => {
-            setProfileimage(response.assets?.at(0)?.uri)
-          })
-         }}
-      >{profileimage && <Image style={styles.profile} src={profileimage} />}</Pressable>
+      <Pressable style={styles.profileContainer} onPress={handleProfilePress}>
+        {profileimage && <Image style={styles.profile} src={profileimage} />}</Pressable>
       <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
       <SectionList
         sections={menuItems}
