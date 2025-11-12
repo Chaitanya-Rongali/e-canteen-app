@@ -1,4 +1,4 @@
-import { Button, SafeAreaView, SectionList, Text, TouchableOpacity, View } from "react-native"
+import { Button, Image, Pressable, SafeAreaView, SectionList, Text, TouchableOpacity, View } from "react-native"
 import { styles } from "../canteenMenu/CanteenMenu"
 import { loginScreenStyles } from "../LoginScreen/LoginScreen"
 import { MenuItem } from "../../components/menuItem/MenuItem.tsx"
@@ -9,9 +9,13 @@ import { SectionHeader } from "../../components/sectionHeader/SectionHeader.tsx"
 import { UserMenuStyles } from "./UserMenuScreenStyles.ts"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { handleCameraPermission } from "../../permissions/checkPremissions.ts"
+import { launchImageLibrary } from "react-native-image-picker"
 
 export const UserMenuScreen = () => {
     const [menuItems] = useState<menuSection[]>([])
+    const profile="https://www.w3schools.com/howto/img_avatar.png"
+    const[profileImage,setProfileImage]=useState<any>(profile)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const handleDelete=()=>{
       handleDelete()
@@ -25,6 +29,13 @@ export const UserMenuScreen = () => {
     return (
         <View>
             <View style={UserMenuStyles.headerContainer}>
+            <Pressable style={styles.profileContainer}
+                    onPress={() => {
+                      handleCameraPermission();launchImageLibrary({ mediaType: "photo" }, (response) => {
+                        setProfileImage(response.assets?.at(0)?.uri)
+                      })
+                     }}
+                  >{profileImage && <Image style={styles.profile} src={profileImage} />}</Pressable>   
                 <Text style={UserMenuStyles.headerTitle}>Our Menu</Text>
                 <TouchableOpacity style={UserMenuStyles.button} onPress={hanldeLogout}>
                     <Text style={UserMenuStyles.buttonText}>LogOut</Text>
