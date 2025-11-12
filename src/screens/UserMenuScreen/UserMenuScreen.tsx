@@ -1,4 +1,4 @@
-import { Button, Image, Pressable, SafeAreaView, SectionList, Text, TouchableOpacity, View } from "react-native"
+import { Alert, Button, Image, Pressable, SafeAreaView, SectionList, Text, TouchableOpacity, View } from "react-native"
 import { styles } from "../canteenMenu/CanteenMenu"
 import { loginScreenStyles } from "../LoginScreen/LoginScreen"
 import { MenuItem } from "../../components/menuItem/MenuItem.tsx"
@@ -26,15 +26,22 @@ export const UserMenuScreen = () => {
     const hanldeLogout=()=>{
        navigation.navigate('WelcomeScreen')
     }
+    const handleProfilePress = async () => {
+        const permission = await handleCameraPermission();
+        if (permission === 'granted' || permission === 'limited') {
+          launchImageLibrary({ mediaType: 'photo' }, (response) => {
+            setProfileImage(response.assets?.at(0)?.uri);
+          });
+        } else {
+          Alert.alert('Permission denied', 'Cannot change profile picture.');
+        }
+      };
+    
     return (
         <View>
             <View style={UserMenuStyles.headerContainer}>
             <Pressable style={styles.profileContainer}
-                    onPress={() => {
-                      handleCameraPermission();launchImageLibrary({ mediaType: "photo" }, (response) => {
-                        setProfileImage(response.assets?.at(0)?.uri)
-                      })
-                     }}
+                    onPress={handleProfilePress}
                   >{profileImage && <Image style={styles.profile} src={profileImage} />}</Pressable>   
                 <Text style={UserMenuStyles.headerTitle}>Our Menu</Text>
                 <TouchableOpacity style={UserMenuStyles.button} onPress={hanldeLogout}>
