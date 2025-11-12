@@ -14,8 +14,9 @@ import { launchImageLibrary } from 'react-native-image-picker';
 
 
 export const CanteenMenuScreen: React.FC = () => {
+  const image="https://www.w3schools.com/howto/img_avatar.png"
   const [menuItems, SetMenuItems] = useState<menuSection[]>([])
-  const [profileimage, setProfileimage] = useState<string>()
+  const [profileimage, setProfileimage] = useState<any>(image)
 
   useEffect(() => {
     const getMenuItems = async () => {
