@@ -1,16 +1,51 @@
-import React, { useState } from 'react';
-import { Text, View, SectionList, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, SectionList, Image, Button, Pressable, Alert } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { DATA } from '../../data/CanteenMenu';
+// import { DATA } from '../../data/CanteenMenu';
 import { styles } from './CanteenMenu';
-import { menuSection } from '../../types/CanteenMenu.ts';
+import { menuItem, menuSection } from '../../types/CanteenMenu.ts';
 import { MenuItem } from '../../components/menuItem/MenuItem.tsx';
 import { SectionHeader } from '../../components/sectionHeader/SectionHeader.tsx';
+import { deleteMenuItem, fetchMenuItems } from '../../server.ts';
+import { handleCameraPermission } from '../../permissions/checkPremissions.ts';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 
-export const CanteenMenuScreen = () => {
-  const [menuItems, SetMenuItems] = useState<menuSection[]>(DATA)
-  const handleDelete = (sectionTitle: string, id: string) => {
+
+
+export const CanteenMenuScreen: React.FC = () => {
+  const image = "https://www.w3schools.com/howto/img_avatar.png"
+  const [menuItems, SetMenuItems] = useState<menuSection[]>([])
+  const [profileimage, setProfileimage] = useState<any>(image)
+
+  useEffect(() => {
+    const getMenuItems = async () => {
+      try {
+        const data = await fetchMenuItems();
+        const grouped: { [key: string]: menuItem[] } = {};
+        data.forEach((item: menuItem) => {
+          if (!grouped[item.sectionName]) {
+            grouped[item.sectionName] = [];
+          }
+          grouped[item.sectionName].push(item);
+        });
+
+        const sections: menuSection[] = Object.keys(grouped).map(title => ({
+          title,
+          data: grouped[title],
+        }));
+        SetMenuItems(sections);
+
+      } catch {
+        console.error('Error fetching menu items');
+      }
+    };
+    getMenuItems();
+  }, []);
+
+
+  const handleDelete = async (sectionTitle: string, id: string) => {
+    await deleteMenuItem(id)
     const updatedSections = menuItems.map(section => {
       if (section.title === sectionTitle) {
         return {
@@ -22,19 +57,35 @@ export const CanteenMenuScreen = () => {
     });
     SetMenuItems(updatedSections);
   }
+  const handleProfilePress = async () => {
+    const permission = await handleCameraPermission();
+    if (permission === 'granted' || permission === 'limited') {
+      launchImageLibrary({ mediaType: 'photo' }, (response) => {
+        setProfileimage(response.assets?.at(0)?.uri);
+      });
+    } else {
+      Alert.alert('Permission denied', 'Cannot change profile picture.');
+    }
+  };
+
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <Pressable style={styles.profileContainer} onPress={handleProfilePress}>
+        {profileimage && <Image style={styles.profile} src={profileimage} />}</Pressable>
       <Text style={styles.tittle}>Everest-Canteen👨‍🍳</Text>
       <SectionList
         sections={menuItems}
-        keyExtractor={(item, index) => item.id + index}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, section }) => <MenuItem item={item} handleDelete={handleDelete} sectionTitle={section.title} role={'admin'} />}
         renderSectionHeader={({ section }) => (
           <SectionHeader title={section.title} SetMenuItems={SetMenuItems} menuItems={menuItems} data={section.data} role={'admin'} />
         )}
       />
+
     </SafeAreaView>
 
   );
 }
+
 

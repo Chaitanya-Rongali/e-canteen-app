@@ -10,4 +10,20 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     margin: 10,
   },
+  profile:{
+    width: '100%',
+    height: '100%',
+    },
+  profileContainer:{
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    borderWidth: 2,
+    borderColor: '#007bff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  }
+
+  
 });

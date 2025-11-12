@@ -7,18 +7,36 @@ import {  RegistarationScreenRouteProp, RootStackParamList } from "../../types/C
 import { CustomInput } from "../../components/InputFiled/CustomInput";
 export const RegistrationScreen = ({ route }: { route:RegistarationScreenRouteProp }) => {
   const navigation = useNavigation<RootStackParamList>();
-  const {role} = route.params
-   const [username, setUsername] = useState("");
-	 const [password, setPassword] = useState("");
-   const[confirmpassword,setConfirmpassword]=useState('')
-  const handleSignup=()=>{
-    if(!username || !password || !confirmpassword){
+  const { role } = route.params
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState('')
+  const handleSignup = async () => {
+    if (!username || !password || !confirmpassword) {
       return Alert.alert('Please enter all details')
     }
-    if(password!=confirmpassword){
+    if (password != confirmpassword) {
       return Alert.alert('Paswords do not match')
     }
-   
+    try {
+      const allUsers = await fetch("http://localhost:3001/addUsers", {
+        method: "POST",
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          userName: username,
+          password: password,
+          confirmPasword: confirmpassword,
+        }),
+      })
+      if (allUsers.ok) {
+        navigation.navigate('LoginScreen', { role })
+      }
+    } catch {
+      Alert.alert("Registaration is failed")
+    }
+
   }
 
   return (

@@ -7,7 +7,7 @@ const Tab = createBottomTabNavigator();
 export default function AdminTabNavigation() {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="CanteenMenu" component={CanteenMenuScreen} />
+            <Tab.Screen name="CanteenMenuScreen" component={CanteenMenuScreen} />
             <Tab.Screen name="Orders" component={OrdersScreen} />
         </Tab.Navigator>
 

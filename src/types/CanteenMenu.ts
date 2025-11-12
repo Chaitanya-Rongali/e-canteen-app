@@ -5,6 +5,7 @@ export type menuItem = {
     name: string;
     cost: number;
     image: string;
+    sectionName: string;
 }
 export type menuSection = {
     title: string;
@@ -14,7 +15,7 @@ export type ItemModalprops = {
     modalVisible: boolean,
     onClose: () => void;
     title: string
-    SetMenuItems: React.Dispatch<React.SetStateAction<menuSection[]>>
+    SetMenuItems: (value: React.SetStateAction<menuSection[]>) => void
     menuItems: menuSection[]
 }
 export type MenuItemprops = {
@@ -25,7 +26,7 @@ export type MenuItemprops = {
 }
 export type sectionHeader = {
     title: string
-    SetMenuItems?: (items:menuSection[] ) => void;
+    SetMenuItems: (value: React.SetStateAction<menuSection[]>) => void
     menuItems: menuSection[]
     data: any
     role: string
