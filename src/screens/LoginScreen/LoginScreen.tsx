@@ -18,20 +18,17 @@ export const LoginScreen = ({ route }: any) => {
         }
         if (role === "admin") {
             if (username === userName && password === Password) {
-                return navigation.navigate('AdminTabNavigation', { role })
+                return navigation.navigate('AdminTabNavigation', { role:role ,userName:"Chaitanya"})
             } else {
                 return Alert.alert("Password or username is wrong")
             }
         } else {
-
-            navigation.navigate('UserTabNavigation', { role })
+            console.log(role);
+            navigation.navigate('UserTabNavigation', { role:role,userName:"Chaitnya"})
         }
 
     }
-
-
-
-    return (
+return (
         <View style={loginScreenStyles.container}>
 
             <Text style={loginScreenStyles.title}>{role === "admin" ? "Admin Login" : "User Login"}</Text>
@@ -48,7 +45,7 @@ export const LoginScreen = ({ route }: any) => {
             </TouchableOpacity>
             <Text> or sign in with</Text>
             <Text>Don't have an account?</Text>
-            <Button title="Sign Up" onPress={() => navigation.navigate('RegistrationScreen', { role })} />
+            <Button title="Sign Up" onPress={() => navigation.navigate('RegistrationScreen', { role:role ,userName:"chaitanya"})} />
 
         </View>
     )

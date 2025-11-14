@@ -32,6 +32,7 @@ export type sectionHeader = {
 }
 type NavigationParams = {
   role: string; 
+  userName:string;
 };
 export type RootStackParamList = {
   navigate(role: string, navigate:NavigationParams): void;
