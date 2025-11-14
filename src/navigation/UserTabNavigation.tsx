@@ -4,16 +4,17 @@ import { OrdersScreen } from "../screens/orders/OrdersScreen.tsx";
 
 export type UserTabParamList = {
   UserMenuScreen: () => React.JSX.Element
-  OrdersScreen: { userName: string,admin:string, user:string};
+  OrdersScreen: {role:string,username:string};
 };
 
 
 const Tab = createBottomTabNavigator<UserTabParamList>();
-export const UserTabNavigation = () => {
+export const UserTabNavigation = ({route}:any) => {
+     const{role,username}=route.params
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen name="UserMenuScreen" component={UserMenuScreen} />
-            <Tab.Screen name="OrdersScreen" component={OrdersScreen}  initialParams={{ userName: "Chaitanya",admin:"admin",user:"user" }}/>
+            <Tab.Screen name="OrdersScreen" component={OrdersScreen}  initialParams={{role:role,username:"Chaitanya" }}/>
         </Tab.Navigator>
 
     );
