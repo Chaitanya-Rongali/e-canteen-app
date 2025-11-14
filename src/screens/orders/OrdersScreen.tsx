@@ -4,18 +4,16 @@ import { styles } from "./OrdersScreen"
 import notifee from '@notifee/react-native';
 import { RouteProp } from "@react-navigation/native";
 type OrdersScreenRouteParams = {
-    userName: string;
-    admin: string;
-    user: string;
+    role:string;
+    username: string;
+  
 };
 type OrdersScreenProps = {
     route: RouteProp<{ OrdersScreen: OrdersScreenRouteParams }, "OrdersScreen">;
 };
 export const OrdersScreen: React.FC<OrdersScreenProps> = ({ route }) => {
-    const { userName, admin, user } = route.params;
-
-    async function displayNotification(name: string) {
-        
+const { role,username } = route.params;
+async function displayNotification(name: string) {
         await notifee.requestPermission()
         await notifee.displayNotification({
             title: 'Canteen App',
@@ -25,7 +23,7 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ route }) => {
     return (
         <>
             <Text>Display Orders!</Text>
-            {user === "user" && (<CustomButton onPress={() => { displayNotification(userName) }} title={"Place Order"} style={styles.button} />)}
+            {role === "user" && (<CustomButton onPress={() => { displayNotification(username) }} title={"Place Order"} style={styles.button} />)}
         </>
     )
 }
