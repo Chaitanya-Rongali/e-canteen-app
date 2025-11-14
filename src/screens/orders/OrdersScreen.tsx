@@ -1,4 +1,4 @@
-import { Platform, Text } from "react-native"
+import { Alert, Platform, Text } from "react-native"
 import { CustomButton } from "../../components/Button/CustomButton"
 import { styles } from "./OrdersScreen"
 import notifee from '@notifee/react-native';
@@ -14,11 +14,17 @@ type OrdersScreenProps = {
 export const OrdersScreen: React.FC<OrdersScreenProps> = ({ route }) => {
 const { role,username } = route.params;
 async function displayNotification(name: string) {
-        await notifee.requestPermission()
-        await notifee.displayNotification({
+        await notifee.requestPermission().then(async (status)=>{
+           if(status.authorizationStatus===1){
+            await notifee.displayNotification({
             title: 'Canteen App',
             body: `Hi ${name}  your order got placed!!!`,
         });
+           }else{
+            Alert.alert("Please enable the notications through app settings")
+           }
+        })
+        
     }
     return (
         <>
